@@ -79,7 +79,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.settings_tab = new System.Windows.Forms.TabPage();
-            this.button8 = new System.Windows.Forms.Button();
+            this.settings_create_database = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.service_tab.SuspendLayout();
@@ -592,7 +592,7 @@
             // 
             // settings_tab
             // 
-            this.settings_tab.Controls.Add(this.button8);
+            this.settings_tab.Controls.Add(this.settings_create_database);
             this.settings_tab.Location = new System.Drawing.Point(4, 29);
             this.settings_tab.Name = "settings_tab";
             this.settings_tab.Padding = new System.Windows.Forms.Padding(3);
@@ -601,14 +601,15 @@
             this.settings_tab.Text = "Настройки";
             this.settings_tab.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // settings_create_database
             // 
-            this.button8.Location = new System.Drawing.Point(17, 26);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(165, 64);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "Создать базу данных";
-            this.button8.UseVisualStyleBackColor = true;
+            this.settings_create_database.Location = new System.Drawing.Point(17, 26);
+            this.settings_create_database.Name = "settings_create_database";
+            this.settings_create_database.Size = new System.Drawing.Size(165, 64);
+            this.settings_create_database.TabIndex = 0;
+            this.settings_create_database.Text = "Создать базу данных";
+            this.settings_create_database.UseVisualStyleBackColor = true;
+            this.settings_create_database.Click += new System.EventHandler(this.create_database);
             // 
             // button9
             // 
@@ -702,7 +703,7 @@
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button settings_create_database;
         private System.Windows.Forms.Button button9;
     }
 }

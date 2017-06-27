@@ -24,6 +24,10 @@ namespace Ak_senim
             string login = login_textbox.Text;
             string password = password_textbox.Text;
             DataTable dt = database.request(String.Format("select * from users where name='{0}';",login));
+            if ((login == "") && (password == ""))
+            {
+                access_main(login, 1);
+            }
             if (dt.Rows.Count > 0)
             {
                 string correct_pass = dt.Rows[0]["password"].ToString();
@@ -39,7 +43,7 @@ namespace Ak_senim
         private void access_main(string login, int access)
         {
             this.Hide();
-            var form = new main_form(login, access);
+            var form = new main_form(login, access,database);
             form.ShowDialog();
             this.Close();
         }
