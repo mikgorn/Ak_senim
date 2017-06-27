@@ -42,9 +42,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(82, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 37);
+            this.label1.Size = new System.Drawing.Size(88, 37);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Login";
+            this.label1.Text = "Вход";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -53,9 +53,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(98, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 25);
+            this.label2.Size = new System.Drawing.Size(71, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Login";
+            this.label2.Text = "Логин";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // login_textbox
@@ -81,9 +81,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(84, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 25);
+            this.label3.Size = new System.Drawing.Size(86, 25);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Password";
+            this.label3.Text = "Пароль";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
@@ -93,7 +93,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 40);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Sign in";
+            this.button1.Text = "Войти";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.log_in);
             // 
