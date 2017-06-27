@@ -15,6 +15,7 @@ namespace Ak_senim
         Database database;
         string login;
         int access;
+        
         public main_form(string input_login, int input_access, Database db)
         {
             InitializeComponent();

@@ -76,6 +76,7 @@
     <Compile Include="main_form.Designer.cs">
       <DependentUpon>main_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="login_form.resx">
