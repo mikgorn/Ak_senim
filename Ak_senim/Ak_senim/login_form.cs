@@ -23,6 +23,7 @@ namespace Ak_senim
         {
             string login = login_textbox.Text;
             string password = password_textbox.Text;
+
             DataTable dt = database.request(String.Format("select * from users where name='{0}';",login));
             if ((login == "") && (password == ""))
             {
