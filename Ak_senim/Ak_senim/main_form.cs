@@ -26,19 +26,6 @@ namespace Ak_senim
         
        
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button20_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
