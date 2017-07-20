@@ -36,6 +36,7 @@
             this.service_save_button = new System.Windows.Forms.Button();
             this.service_check_button = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.service_discount_textbox = new System.Windows.Forms.TextBox();
             this.service_share_textbox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -139,7 +140,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.service_tab.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -244,6 +244,7 @@
             this.service_save_button.TabIndex = 8;
             this.service_save_button.Text = "Сохранить";
             this.service_save_button.UseVisualStyleBackColor = false;
+            this.service_save_button.Click += new System.EventHandler(this.service_save_button_Click);
             // 
             // service_check_button
             // 
@@ -292,6 +293,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "     Услуга";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(426, 181);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(93, 20);
+            this.label16.TabIndex = 19;
+            this.label16.Text = "Стоимость";
+            // 
             // service_discount_textbox
             // 
             this.service_discount_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -299,6 +309,7 @@
             this.service_discount_textbox.Name = "service_discount_textbox";
             this.service_discount_textbox.Size = new System.Drawing.Size(113, 29);
             this.service_discount_textbox.TabIndex = 18;
+            this.service_discount_textbox.TextChanged += new System.EventHandler(this.service_discount_textbox_TextChanged);
             // 
             // service_share_textbox
             // 
@@ -334,6 +345,7 @@
             this.service_price_textbox.Name = "service_price_textbox";
             this.service_price_textbox.Size = new System.Drawing.Size(152, 29);
             this.service_price_textbox.TabIndex = 14;
+            this.service_price_textbox.TextChanged += new System.EventHandler(this.service_price_textbox_TextChanged);
             // 
             // label1
             // 
@@ -367,6 +379,7 @@
             this.service_add_button.TabIndex = 11;
             this.service_add_button.Text = "Добавить услугу";
             this.service_add_button.UseVisualStyleBackColor = false;
+            this.service_add_button.Click += new System.EventHandler(this.service_add_button_Click);
             // 
             // label6
             // 
@@ -1306,16 +1319,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(426, 181);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(93, 20);
-            this.label16.TabIndex = 19;
-            this.label16.Text = "Стоимость";
-            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // main_form
             // 
