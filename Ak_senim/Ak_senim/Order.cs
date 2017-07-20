@@ -32,6 +32,16 @@ namespace Ak_senim
             orders.Columns.Add("doctor");
         }
 
+        public int sum()
+        {
+            int s = 0;
+            foreach(DataRow dr in orders.Rows)
+            {
+                s += Convert.ToInt32(dr["final_price"]);
+
+            }
+            return s;
+        }
         public void add_order( int service_code, string service_name, int price, int discount, string doctorcode ,int share)
         {
             DataRow dr = orders.NewRow();
