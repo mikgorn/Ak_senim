@@ -12,6 +12,7 @@ namespace Ak_senim
 {
     public partial class main_form : Form
     {
+        DataTable types;
         Database database;
         string login;
 
@@ -138,6 +139,23 @@ namespace Ak_senim
             database.exec(String.Format("insert into doctors(name,doctorcode) values('{0}','{1}');", name,code));
 
             MessageBox.Show("Новый врач успешно добавлен");
+        }
+
+        private void refresh_combobox()
+        {
+
+            types = database.request("select * from types");
+
+            service_type_combobox.Items.Clear();
+            foreach (DataRow dr in types.Rows)
+            {
+                service_type_combobox.Items.Add(dr["name"]);
+            }
+        }
+
+        private void service_check_button_Click(object sender, EventArgs e)
+        {
+            refresh_combobox();
         }
     }
 }

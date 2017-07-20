@@ -206,11 +206,11 @@
             // service_refresh_button
             // 
             this.service_refresh_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_refresh_button.Location = new System.Drawing.Point(548, 23);
+            this.service_refresh_button.Location = new System.Drawing.Point(955, 597);
             this.service_refresh_button.Name = "service_refresh_button";
             this.service_refresh_button.Size = new System.Drawing.Size(250, 57);
             this.service_refresh_button.TabIndex = 10;
-            this.service_refresh_button.Text = "Обнулить";
+            this.service_refresh_button.Text = "Следующий";
             this.service_refresh_button.UseVisualStyleBackColor = true;
             // 
             // service_white_checkbox
@@ -242,6 +242,7 @@
             this.service_check_button.TabIndex = 7;
             this.service_check_button.Text = "Чек";
             this.service_check_button.UseVisualStyleBackColor = true;
+            this.service_check_button.Click += new System.EventHandler(this.service_check_button_Click);
             // 
             // groupBox2
             // 
@@ -425,9 +426,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 20);
+            this.label2.Size = new System.Drawing.Size(123, 20);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Имя пациента";
+            this.label2.Text = "ФИО пациента";
             // 
             // service_client_name_textbox
             // 
