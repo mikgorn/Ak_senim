@@ -339,6 +339,7 @@
             this.service_add_button.TabIndex = 11;
             this.service_add_button.Text = "Добавить услугу";
             this.service_add_button.UseVisualStyleBackColor = true;
+            this.service_add_button.Click += new System.EventHandler(this.service_add_button_Click);
             // 
             // label6
             // 
@@ -401,6 +402,7 @@
             this.service_type_combobox.Name = "service_type_combobox";
             this.service_type_combobox.Size = new System.Drawing.Size(229, 32);
             this.service_type_combobox.TabIndex = 2;
+            this.service_type_combobox.SelectedIndexChanged += new System.EventHandler(this.service_type_combobox_SelectedIndexChanged);
             // 
             // service_code_textbox
             // 
@@ -447,6 +449,7 @@
             this.service_delete_button.TabIndex = 2;
             this.service_delete_button.Text = "Удалить";
             this.service_delete_button.UseVisualStyleBackColor = true;
+            this.service_delete_button.Click += new System.EventHandler(this.service_delete_button_Click);
             // 
             // service_datagrid
             // 

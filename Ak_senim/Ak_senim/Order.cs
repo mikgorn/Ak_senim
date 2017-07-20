@@ -9,7 +9,7 @@ namespace Ak_senim
 {
     public class Order
     {
-        private DataTable orders;
+        public DataTable orders;
         private string client_name = "";
         public Order()
         {
@@ -23,17 +23,29 @@ namespace Ak_senim
         public void set_new_order()
         {
             orders = new DataTable();
-            orders.Columns.Add("service_name");
             orders.Columns.Add("service_code");
-            orders.Columns.Add("service_type");
+            orders.Columns.Add("service_name");
             orders.Columns.Add("price");
+            orders.Columns.Add("discount");
+            orders.Columns.Add("final_price");
+            orders.Columns.Add("share");
             orders.Columns.Add("doctor");
         }
 
-        public void add_order(string service_name, int service_code, string service_type, int price, string doctor ="")
+        public void add_order( int service_code, string service_name, int price, int discount, string doctorcode ,int share)
         {
+            DataRow dr = orders.NewRow();
+            dr["service_code"] = service_code;
+            dr["service_name"] = service_name;
+            dr["price"] = price;
+            dr["discount"] = discount;
+            dr["final_price"] = price * (100 - discount) / 100;
+            dr["doctor"] = doctorcode;
+            dr["share"] = share;
 
+            orders.Rows.Add(dr);
         }
+        
 
     }
 }
