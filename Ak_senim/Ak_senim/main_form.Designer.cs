@@ -193,7 +193,6 @@
             this.service_tab.Size = new System.Drawing.Size(1249, 671);
             this.service_tab.TabIndex = 0;
             this.service_tab.Text = "Услуги";
-            this.service_tab.Click += new System.EventHandler(this.service_tab_Click);
             // 
             // service_total_sum_label
             // 
@@ -292,7 +291,6 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "     Услуга";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // service_discount_textbox
             // 
@@ -328,7 +326,6 @@
             this.service_total_price_label.Size = new System.Drawing.Size(26, 29);
             this.service_total_price_label.TabIndex = 15;
             this.service_total_price_label.Text = "0";
-            this.service_total_price_label.Click += new System.EventHandler(this.service_total_price_label_Click);
             // 
             // service_price_textbox
             // 
