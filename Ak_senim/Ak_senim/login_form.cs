@@ -12,11 +12,11 @@ namespace Ak_senim
 {
     public partial class login_form : Form
     {
-        Database database = new Database();
+        static string db_loc = Properties.Settings.Default.database;
+        Database database = new Database(db_loc);
         public login_form()
         {
             InitializeComponent();
-            database.connection_open();
         }
 
         private void log_in(object sender, EventArgs e)
@@ -24,7 +24,7 @@ namespace Ak_senim
             string login = login_textbox.Text;
             string password = password_textbox.Text;
 
-            DataTable dt = database.request(String.Format("select * from users where name='{0}';",login));
+            DataTable dt = database.request(String.Format("select * from users where login='{0}';",login));
             if ((login == "") && (password == ""))
             {
                 access_main(login, 1);

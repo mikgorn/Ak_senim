@@ -771,6 +771,7 @@
             this.s_merge_change_button.TabIndex = 29;
             this.s_merge_change_button.Text = "Изменить";
             this.s_merge_change_button.UseVisualStyleBackColor = true;
+            this.s_merge_change_button.Click += new System.EventHandler(this.s_merge_change_button_Click);
             // 
             // s_merge_path_textbox
             // 
@@ -789,6 +790,7 @@
             this.s_merge_button.TabIndex = 28;
             this.s_merge_button.Text = "Слиять";
             this.s_merge_button.UseVisualStyleBackColor = true;
+            this.s_merge_button.Click += new System.EventHandler(this.s_merge_button_Click);
             // 
             // label34
             // 
@@ -821,6 +823,7 @@
             this.s_open_button.TabIndex = 30;
             this.s_open_button.Text = "Открыть";
             this.s_open_button.UseVisualStyleBackColor = true;
+            this.s_open_button.Click += new System.EventHandler(this.s_open_button_Click);
             // 
             // s_open_change_button
             // 
@@ -831,6 +834,7 @@
             this.s_open_change_button.TabIndex = 29;
             this.s_open_change_button.Text = "Изменить";
             this.s_open_change_button.UseVisualStyleBackColor = true;
+            this.s_open_change_button.Click += new System.EventHandler(this.s_open_change_button_Click);
             // 
             // s_open_path_textbox
             // 
@@ -871,6 +875,7 @@
             this.s_create_button.TabIndex = 30;
             this.s_create_button.Text = "Создать";
             this.s_create_button.UseVisualStyleBackColor = true;
+            this.s_create_button.Click += new System.EventHandler(this.s_create_button_Click);
             // 
             // s_create_path_textbox
             // 
@@ -889,6 +894,7 @@
             this.s_create_change_button.TabIndex = 28;
             this.s_create_change_button.Text = "Изменить";
             this.s_create_change_button.UseVisualStyleBackColor = true;
+            this.s_create_change_button.Click += new System.EventHandler(this.s_create_change_button_Click);
             // 
             // label32
             // 
@@ -922,6 +928,7 @@
             this.s_doctor_add_button.TabIndex = 31;
             this.s_doctor_add_button.Text = "Добавить";
             this.s_doctor_add_button.UseVisualStyleBackColor = true;
+            this.s_doctor_add_button.Click += new System.EventHandler(this.s_doctor_add_button_Click);
             // 
             // s_doctor_code_textbox
             // 
@@ -986,6 +993,7 @@
             this.s_user_add_button.TabIndex = 29;
             this.s_user_add_button.Text = "Добавить";
             this.s_user_add_button.UseVisualStyleBackColor = true;
+            this.s_user_add_button.Click += new System.EventHandler(this.s_user_add_button_Click);
             // 
             // s_user_memo_textbox
             // 
@@ -1103,6 +1111,7 @@
             this.s_type_add_button.TabIndex = 28;
             this.s_type_add_button.Text = "Добавить";
             this.s_type_add_button.UseVisualStyleBackColor = true;
+            this.s_type_add_button.Click += new System.EventHandler(this.s_type_add_button_Click);
             // 
             // label29
             // 
@@ -1144,6 +1153,7 @@
             this.s_service_add_button.TabIndex = 29;
             this.s_service_add_button.Text = "Добавить";
             this.s_service_add_button.UseVisualStyleBackColor = true;
+            this.s_service_add_button.Click += new System.EventHandler(this.s_service_add_button_Click);
             // 
             // s_service_type_combobox
             // 

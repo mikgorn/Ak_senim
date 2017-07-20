@@ -11,8 +11,15 @@ namespace Ak_senim
 {
     public class Database
     {
-        string data_source = "ak_senim.db";
+        string data_source = "";
         SQLiteConnection connection;
+
+        public Database(string source = "standard.db")
+        {
+            data_source = source;
+            this.connection_open();
+        }
+
         public void connection_open()
         {
 
@@ -45,6 +52,27 @@ namespace Ak_senim
             SQLiteCommand cmd = new SQLiteCommand(request_message, connection);
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
+        }
+        public void fill_empty()
+        {
+            this.exec("create table if not exists users(id rowid, login text, password text, access int, name text, memo text);");
+            this.exec("create table if not exists types(id rowid, name text);");
+            this.exec("create table if not exists services(id rowid, code int, type text, name text, price int, doctorcode text, share int);");
+            this.exec("create table if not exists doctors(id rowid,name text,doctorcode text);");
+            this.exec("create table if not exists logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int);");
+            this.exec("create table if not exists book(date datetime, doctor text, name text, phone text, doctorcode int, memo text);");
+        }
+        public void merge(string db)
+        {
+            this.exec(String.Format("attach '{0}' as toMerge;" +
+                "BEGIN;" +
+                "insert into users select *from toMerge.users;" +
+                "insert into types select *from toMerge.types;" +
+                "insert into services select *from toMerge.services;" +
+                "insert into doctors select *from toMerge.doctors;" +
+                "insert into logs select *from toMerge.logs;" +
+                "insert into book select *from toMerge.book;" +
+                "COMMIT;detach toMerge; ",db));
         }
     }
 }
