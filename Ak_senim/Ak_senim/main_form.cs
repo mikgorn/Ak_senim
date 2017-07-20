@@ -157,5 +157,30 @@ namespace Ak_senim
         {
             refresh_combobox();
         }
+
+        private void service_delete_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void service_tab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void service_total_price_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

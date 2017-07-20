@@ -139,6 +139,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.service_tab.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -176,6 +177,7 @@
             // 
             // service_tab
             // 
+            this.service_tab.BackColor = System.Drawing.Color.PaleTurquoise;
             this.service_tab.Controls.Add(this.service_total_sum_label);
             this.service_tab.Controls.Add(this.service_refresh_button);
             this.service_tab.Controls.Add(this.service_white_checkbox);
@@ -191,32 +193,38 @@
             this.service_tab.Size = new System.Drawing.Size(1249, 671);
             this.service_tab.TabIndex = 0;
             this.service_tab.Text = "Услуги";
-            this.service_tab.UseVisualStyleBackColor = true;
+            this.service_tab.Click += new System.EventHandler(this.service_tab_Click);
             // 
             // service_total_sum_label
             // 
             this.service_total_sum_label.AutoSize = true;
-            this.service_total_sum_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_total_sum_label.Location = new System.Drawing.Point(233, 610);
+            this.service_total_sum_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.service_total_sum_label.ForeColor = System.Drawing.Color.DarkCyan;
+            this.service_total_sum_label.Location = new System.Drawing.Point(201, 592);
             this.service_total_sum_label.Name = "service_total_sum_label";
-            this.service_total_sum_label.Size = new System.Drawing.Size(109, 31);
+            this.service_total_sum_label.Size = new System.Drawing.Size(96, 29);
             this.service_total_sum_label.TabIndex = 19;
             this.service_total_sum_label.Text = "Сумма:";
             // 
             // service_refresh_button
             // 
-            this.service_refresh_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_refresh_button.Location = new System.Drawing.Point(955, 597);
+            this.service_refresh_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.service_refresh_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.service_refresh_button.FlatAppearance.BorderSize = 2;
+            this.service_refresh_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.service_refresh_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.service_refresh_button.ForeColor = System.Drawing.Color.LightCyan;
+            this.service_refresh_button.Location = new System.Drawing.Point(905, 577);
             this.service_refresh_button.Name = "service_refresh_button";
-            this.service_refresh_button.Size = new System.Drawing.Size(250, 57);
+            this.service_refresh_button.Size = new System.Drawing.Size(222, 44);
             this.service_refresh_button.TabIndex = 10;
             this.service_refresh_button.Text = "Следующий";
-            this.service_refresh_button.UseVisualStyleBackColor = true;
+            this.service_refresh_button.UseVisualStyleBackColor = false;
             // 
             // service_white_checkbox
             // 
             this.service_white_checkbox.AutoSize = true;
-            this.service_white_checkbox.Location = new System.Drawing.Point(554, 514);
+            this.service_white_checkbox.Location = new System.Drawing.Point(581, 547);
             this.service_white_checkbox.Name = "service_white_checkbox";
             this.service_white_checkbox.Size = new System.Drawing.Size(133, 24);
             this.service_white_checkbox.TabIndex = 9;
@@ -225,27 +233,40 @@
             // 
             // service_save_button
             // 
-            this.service_save_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_save_button.Location = new System.Drawing.Point(548, 597);
+            this.service_save_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.service_save_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.service_save_button.FlatAppearance.BorderSize = 2;
+            this.service_save_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.service_save_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.service_save_button.ForeColor = System.Drawing.Color.LightCyan;
+            this.service_save_button.Location = new System.Drawing.Point(581, 577);
             this.service_save_button.Name = "service_save_button";
-            this.service_save_button.Size = new System.Drawing.Size(185, 57);
+            this.service_save_button.Size = new System.Drawing.Size(175, 44);
             this.service_save_button.TabIndex = 8;
             this.service_save_button.Text = "Сохранить";
-            this.service_save_button.UseVisualStyleBackColor = true;
+            this.service_save_button.UseVisualStyleBackColor = false;
             // 
             // service_check_button
             // 
-            this.service_check_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_check_button.Location = new System.Drawing.Point(856, 23);
+            this.service_check_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.service_check_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.service_check_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.service_check_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.service_check_button.ForeColor = System.Drawing.Color.LightCyan;
+            this.service_check_button.Location = new System.Drawing.Point(1017, 28);
             this.service_check_button.Name = "service_check_button";
-            this.service_check_button.Size = new System.Drawing.Size(87, 57);
+            this.service_check_button.Size = new System.Drawing.Size(177, 35);
             this.service_check_button.TabIndex = 7;
-            this.service_check_button.Text = "Чек";
-            this.service_check_button.UseVisualStyleBackColor = true;
+            this.service_check_button.Text = "Печатать чек";
+            this.service_check_button.UseVisualStyleBackColor = false;
             this.service_check_button.Click += new System.EventHandler(this.service_check_button_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox2.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.groupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.service_discount_textbox);
             this.groupBox2.Controls.Add(this.service_share_textbox);
             this.groupBox2.Controls.Add(this.label17);
@@ -262,33 +283,37 @@
             this.groupBox2.Controls.Add(this.service_name_combobox);
             this.groupBox2.Controls.Add(this.service_type_combobox);
             this.groupBox2.Controls.Add(this.service_code_textbox);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(548, 102);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(676, 400);
+            this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.groupBox2.Size = new System.Drawing.Size(646, 436);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Услуга";
+            this.groupBox2.Text = "     Услуга";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // service_discount_textbox
             // 
             this.service_discount_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_discount_textbox.Location = new System.Drawing.Point(194, 207);
+            this.service_discount_textbox.Location = new System.Drawing.Point(230, 207);
             this.service_discount_textbox.Name = "service_discount_textbox";
-            this.service_discount_textbox.Size = new System.Drawing.Size(94, 29);
+            this.service_discount_textbox.Size = new System.Drawing.Size(113, 29);
             this.service_discount_textbox.TabIndex = 18;
             // 
             // service_share_textbox
             // 
             this.service_share_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_share_textbox.Location = new System.Drawing.Point(194, 294);
+            this.service_share_textbox.Location = new System.Drawing.Point(230, 291);
             this.service_share_textbox.Name = "service_share_textbox";
-            this.service_share_textbox.Size = new System.Drawing.Size(94, 29);
+            this.service_share_textbox.Size = new System.Drawing.Size(113, 29);
             this.service_share_textbox.TabIndex = 17;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(190, 268);
+            this.label17.Location = new System.Drawing.Point(226, 268);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(75, 20);
             this.label17.TabIndex = 16;
@@ -298,16 +323,17 @@
             // 
             this.service_total_price_label.AutoSize = true;
             this.service_total_price_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_total_price_label.Location = new System.Drawing.Point(322, 206);
+            this.service_total_price_label.Location = new System.Drawing.Point(425, 206);
             this.service_total_price_label.Name = "service_total_price_label";
-            this.service_total_price_label.Size = new System.Drawing.Size(146, 29);
+            this.service_total_price_label.Size = new System.Drawing.Size(26, 29);
             this.service_total_price_label.TabIndex = 15;
-            this.service_total_price_label.Text = "Стоимость:";
+            this.service_total_price_label.Text = "0";
+            this.service_total_price_label.Click += new System.EventHandler(this.service_total_price_label_Click);
             // 
             // service_price_textbox
             // 
             this.service_price_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_price_textbox.Location = new System.Drawing.Point(13, 207);
+            this.service_price_textbox.Location = new System.Drawing.Point(33, 207);
             this.service_price_textbox.Name = "service_price_textbox";
             this.service_price_textbox.Size = new System.Drawing.Size(152, 29);
             this.service_price_textbox.TabIndex = 14;
@@ -315,7 +341,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 181);
+            this.label1.Location = new System.Drawing.Point(29, 181);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 13;
@@ -324,7 +350,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 271);
+            this.label7.Location = new System.Drawing.Point(31, 268);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 20);
             this.label7.TabIndex = 10;
@@ -332,18 +358,23 @@
             // 
             // service_add_button
             // 
-            this.service_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_add_button.Location = new System.Drawing.Point(166, 337);
+            this.service_add_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.service_add_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.service_add_button.FlatAppearance.BorderSize = 2;
+            this.service_add_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.service_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.service_add_button.ForeColor = System.Drawing.Color.LightCyan;
+            this.service_add_button.Location = new System.Drawing.Point(357, 354);
             this.service_add_button.Name = "service_add_button";
-            this.service_add_button.Size = new System.Drawing.Size(281, 57);
+            this.service_add_button.Size = new System.Drawing.Size(222, 41);
             this.service_add_button.TabIndex = 11;
             this.service_add_button.Text = "Добавить услугу";
-            this.service_add_button.UseVisualStyleBackColor = true;
+            this.service_add_button.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(190, 181);
+            this.label6.Location = new System.Drawing.Point(226, 181);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 20);
             this.label6.TabIndex = 7;
@@ -352,7 +383,7 @@
             // service_doctorcode_textbox
             // 
             this.service_doctorcode_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_doctorcode_textbox.Location = new System.Drawing.Point(13, 294);
+            this.service_doctorcode_textbox.Location = new System.Drawing.Point(33, 291);
             this.service_doctorcode_textbox.Name = "service_doctorcode_textbox";
             this.service_doctorcode_textbox.Size = new System.Drawing.Size(109, 29);
             this.service_doctorcode_textbox.TabIndex = 6;
@@ -360,7 +391,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 91);
+            this.label5.Location = new System.Drawing.Point(31, 101);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(135, 20);
             this.label5.TabIndex = 6;
@@ -369,7 +400,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(162, 37);
+            this.label4.Location = new System.Drawing.Point(226, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 20);
             this.label4.TabIndex = 5;
@@ -378,7 +409,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 37);
+            this.label3.Location = new System.Drawing.Point(31, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 20);
             this.label3.TabIndex = 4;
@@ -388,35 +419,37 @@
             // 
             this.service_name_combobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.service_name_combobox.FormattingEnabled = true;
-            this.service_name_combobox.Location = new System.Drawing.Point(6, 114);
+            this.service_name_combobox.Location = new System.Drawing.Point(33, 124);
             this.service_name_combobox.Name = "service_name_combobox";
-            this.service_name_combobox.Size = new System.Drawing.Size(388, 32);
+            this.service_name_combobox.Size = new System.Drawing.Size(546, 32);
             this.service_name_combobox.TabIndex = 3;
             // 
             // service_type_combobox
             // 
             this.service_type_combobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.service_type_combobox.FormattingEnabled = true;
-            this.service_type_combobox.Location = new System.Drawing.Point(166, 60);
+            this.service_type_combobox.Location = new System.Drawing.Point(230, 60);
             this.service_type_combobox.Name = "service_type_combobox";
-            this.service_type_combobox.Size = new System.Drawing.Size(229, 32);
+            this.service_type_combobox.Size = new System.Drawing.Size(349, 32);
             this.service_type_combobox.TabIndex = 2;
             // 
             // service_code_textbox
             // 
             this.service_code_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_code_textbox.Location = new System.Drawing.Point(6, 60);
+            this.service_code_textbox.Location = new System.Drawing.Point(33, 59);
             this.service_code_textbox.Name = "service_code_textbox";
-            this.service_code_textbox.Size = new System.Drawing.Size(100, 29);
+            this.service_code_textbox.Size = new System.Drawing.Size(117, 29);
             this.service_code_textbox.TabIndex = 1;
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.PaleTurquoise;
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.service_client_name_textbox);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(9, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 89);
+            this.groupBox1.Size = new System.Drawing.Size(524, 89);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Клиент";
@@ -424,32 +457,46 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DarkCyan;
             this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 20);
+            this.label2.Size = new System.Drawing.Size(135, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "ФИО пациента";
             // 
             // service_client_name_textbox
             // 
             this.service_client_name_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_client_name_textbox.Location = new System.Drawing.Point(4, 45);
+            this.service_client_name_textbox.Location = new System.Drawing.Point(6, 45);
             this.service_client_name_textbox.Name = "service_client_name_textbox";
-            this.service_client_name_textbox.Size = new System.Drawing.Size(389, 29);
+            this.service_client_name_textbox.Size = new System.Drawing.Size(512, 29);
             this.service_client_name_textbox.TabIndex = 1;
             // 
             // service_delete_button
             // 
-            this.service_delete_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.service_delete_button.Location = new System.Drawing.Point(9, 597);
+            this.service_delete_button.BackColor = System.Drawing.Color.IndianRed;
+            this.service_delete_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.service_delete_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.service_delete_button.FlatAppearance.BorderSize = 2;
+            this.service_delete_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.service_delete_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.service_delete_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.service_delete_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_delete_button.ForeColor = System.Drawing.Color.White;
+            this.service_delete_button.Location = new System.Drawing.Point(15, 584);
+            this.service_delete_button.Margin = new System.Windows.Forms.Padding(5);
             this.service_delete_button.Name = "service_delete_button";
-            this.service_delete_button.Size = new System.Drawing.Size(185, 57);
+            this.service_delete_button.Size = new System.Drawing.Size(155, 44);
             this.service_delete_button.TabIndex = 2;
             this.service_delete_button.Text = "Удалить";
-            this.service_delete_button.UseVisualStyleBackColor = true;
+            this.service_delete_button.UseVisualStyleBackColor = false;
+            this.service_delete_button.Click += new System.EventHandler(this.service_delete_button_Click);
             // 
             // service_datagrid
             // 
+            this.service_datagrid.BackgroundColor = System.Drawing.Color.LightCyan;
             this.service_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.service_datagrid.Location = new System.Drawing.Point(9, 102);
             this.service_datagrid.Name = "service_datagrid";
@@ -1263,6 +1310,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(426, 181);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(93, 20);
+            this.label16.TabIndex = 19;
+            this.label16.Text = "Стоимость";
+            this.label16.Click += new System.EventHandler(this.label16_Click);
+            // 
             // main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1421,5 +1478,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label16;
     }
 }
