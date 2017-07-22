@@ -27,9 +27,9 @@ namespace Ak_senim
             orders.Columns.Add("service_name");
             orders.Columns.Add("price");
             orders.Columns.Add("discount");
-            orders.Columns.Add("final_price");
+            orders.Columns.Add("final");
             orders.Columns.Add("share");
-            orders.Columns.Add("doctor");
+            orders.Columns.Add("doctorcode");
         }
 
         public void add_order( int service_code, string service_name, int price, int discount, string doctorcode ,int share)
@@ -39,13 +39,29 @@ namespace Ak_senim
             dr["service_name"] = service_name;
             dr["price"] = price;
             dr["discount"] = discount;
-            dr["final_price"] = price * (100 - discount) / 100;
-            dr["doctor"] = doctorcode;
+            dr["final"] = price * (100 - discount) / 100;
+            dr["doctorcode"] = doctorcode;
             dr["share"] = share;
 
             orders.Rows.Add(dr);
         }
         
+        public void send_order(string login, string name,Database database)
+        {
+            foreach (DataRow dr in orders.Rows)
+            {
+                string request = String.Format("insert into logs(name, service_code , price , discount , final , doctorcode , share , login) values('{0}',{1},{2},{3},{4},'{5}',{6},'{7}');",
+                    name,
+                    dr["service_code"],
+                    dr["price"],
+                    dr["discount"],
+                    dr["final"],
+                    dr["doctorcode"],
+                    dr["share"],
+                    login);
+                database.exec(request);
+            }
+        }
 
     }
 }

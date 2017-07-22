@@ -188,18 +188,24 @@ namespace Ak_senim
         private void service_add_button_Click(object sender, EventArgs e)
         {
             orders.add_order(Convert.ToInt32(service_code_textbox.Text), service_name_combobox.Text, Convert.ToInt32(service_price_textbox.Text), Convert.ToInt32(service_discount_textbox.Text), service_doctorcode_textbox.Text, Convert.ToInt32(service_share_textbox.Text));
-            MessageBox.Show("Услуга успешно добавлена");
+     
             service_datagrid.Refresh();
         }
 
         private void service_delete_button_Click(object sender, EventArgs e)
         {
-            if (service_datagrid.SelectedRows.Count > 0)
+            while (service_datagrid.SelectedRows.Count > 0)
             {
                 orders.orders.Rows[service_datagrid.SelectedRows[0].Index].Delete();
             }
 
-            service_datagrid.DataSource = orders;
+            service_datagrid.Refresh();
+        }
+
+        private void service_save_button_Click(object sender, EventArgs e)
+        {
+            orders.send_order(login, service_client_name_textbox.Text,database);
+            MessageBox.Show("Запись добавлена");
         }
     }
 }

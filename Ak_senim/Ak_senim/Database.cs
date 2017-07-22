@@ -59,7 +59,7 @@ namespace Ak_senim
             this.exec("create table if not exists types(id rowid, name text);");
             this.exec("create table if not exists services(id rowid, code int, type text, name text, price int, doctorcode text, share int);");
             this.exec("create table if not exists doctors(id rowid,name text,doctorcode text);");
-            this.exec("create table if not exists logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int);");
+            this.exec("create table if not exists logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int, login text);");
             this.exec("create table if not exists book(date datetime, doctor text, name text, phone text, doctorcode int, memo text);");
         }
         public void merge(string db)
