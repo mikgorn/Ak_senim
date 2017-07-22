@@ -64,7 +64,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.book_phone_textbox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.book_time_textbox = new System.Windows.Forms.ComboBox();
+            this.book_time_combobox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.book_name_textbox = new System.Windows.Forms.TextBox();
@@ -526,7 +526,7 @@
             this.booking_tab.Controls.Add(this.label11);
             this.booking_tab.Controls.Add(this.book_phone_textbox);
             this.booking_tab.Controls.Add(this.label10);
-            this.booking_tab.Controls.Add(this.book_time_textbox);
+            this.booking_tab.Controls.Add(this.book_time_combobox);
             this.booking_tab.Controls.Add(this.label9);
             this.booking_tab.Controls.Add(this.label8);
             this.booking_tab.Controls.Add(this.book_name_textbox);
@@ -584,13 +584,13 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "Время";
             // 
-            // book_time_textbox
+            // book_time_combobox
             // 
-            this.book_time_textbox.FormattingEnabled = true;
-            this.book_time_textbox.Location = new System.Drawing.Point(977, 146);
-            this.book_time_textbox.Name = "book_time_textbox";
-            this.book_time_textbox.Size = new System.Drawing.Size(227, 28);
-            this.book_time_textbox.TabIndex = 9;
+            this.book_time_combobox.FormattingEnabled = true;
+            this.book_time_combobox.Location = new System.Drawing.Point(977, 146);
+            this.book_time_combobox.Name = "book_time_combobox";
+            this.book_time_combobox.Size = new System.Drawing.Size(227, 28);
+            this.book_time_combobox.TabIndex = 9;
             // 
             // label9
             // 
@@ -635,6 +635,7 @@
             this.book_add_button.TabIndex = 4;
             this.book_add_button.Text = "Добавить";
             this.book_add_button.UseVisualStyleBackColor = true;
+            this.book_add_button.Click += new System.EventHandler(this.book_add_button_Click);
             // 
             // book_change_button
             // 
@@ -660,6 +661,7 @@
             this.book_calendar.MaxSelectionCount = 1;
             this.book_calendar.Name = "book_calendar";
             this.book_calendar.TabIndex = 0;
+            this.book_calendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.book_calendar_DateChanged);
             // 
             // report_tab
             // 
@@ -706,6 +708,7 @@
             this.report_profit_button.TabIndex = 5;
             this.report_profit_button.Text = "Отчет";
             this.report_profit_button.UseVisualStyleBackColor = true;
+            this.report_profit_button.Click += new System.EventHandler(this.report_profit_button_Click);
             // 
             // groupBox4
             // 
@@ -1402,7 +1405,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox book_phone_textbox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox book_time_textbox;
+        private System.Windows.Forms.ComboBox book_time_combobox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox book_name_textbox;

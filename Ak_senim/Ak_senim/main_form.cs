@@ -16,6 +16,7 @@ namespace Ak_senim
         DataTable types;
         DataTable services;
         Database database;
+        DataTable doctors;
         DataTable booking;
         Order orders = new Order();
         BindingSource binding_source;
@@ -165,7 +166,6 @@ namespace Ak_senim
         {
             services = database.request("select * from services;");
             types = database.request("select * from types;");
-
             service_type_combobox.Items.Clear();
             s_service_type_combobox.Items.Clear();
 
@@ -173,6 +173,7 @@ namespace Ak_senim
             {
                 service_type_combobox.Items.Add(dr["name"]);
                 s_service_type_combobox.Items.Add(dr["name"]);
+                book_doctor_combobox.Items.Add(dr["name"]);
             }
         }
         private void refresh_service_combobox()
@@ -326,7 +327,65 @@ namespace Ak_senim
                 DataRow dr = booking.Rows.Add();
                 dr["time"] = time;
             }
+            if (book_doctor_combobox.Text!="")
+            {
+                DataTable request_bookings = database.request(String.Format("select * from book where date = '{0}' and doctor = '{1}';",book_calendar.SelectionRange.Start.ToShortDateString(),book_doctor_combobox.Text));
+                foreach(DataRow dr in request_bookings.Rows)
+                {
+                    fill_book(dr);
+                }
+            }
             book_datagrid.Refresh();
+        }
+        public void fill_book(DataRow dr)
+        {
+            DataRow[] dr1 = booking.Select(String.Format("time = '{0}'",dr["time"]));
+            dr1[0]["name"] = dr["name"];
+            dr1[0]["phone"] = dr["phone"];
+            dr1[0]["doctorcode"] = dr["doctorcode"];
+            dr1[0]["memo"] = dr["memo"];
+            //MessageBox.Show(dr["name"].ToString());
+        }
+        private void book_add_button_Click(object sender, EventArgs e)
+        {
+            string name = book_name_textbox.Text;
+            string date = book_calendar.SelectionRange.Start.ToShortDateString();
+            string time = book_time_combobox.Text;
+            string doctor = book_doctor_combobox.Text;
+            string phone = book_phone_textbox.Text;
+            string memo = book_memo_textbox.Text;
+            database.exec(String.Format("insert into book(date,time,doctor,name,phone,memo) values('{0}','{1}','{2}','{3}','{4}','{5}');",date,time,doctor,name,phone,memo));
+            MessageBox.Show("Бронирование добавлено");
+            refresh_book();
+        }
+
+        private void book_calendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            refresh_book();
+        }
+
+        private void report_profit_button_Click(object sender, EventArgs e)
+        {
+            DateTime d1 = report_calendar.SelectionStart;
+            DateTime d2 = report_calendar.SelectionEnd;
+            DataTable report = database.request(String.Format("select * from logs where date between '{0}-{1}-{2} 00:00:01' and '{3}-{4}-{5} 23:59:59';",
+                d1.Year, month(d1.Month), d1.Day,
+                d2.Year, month(d2.Month), d2.Day));
+            
+
+            foreach (DataRow dr in report.Rows)
+            {
+            }
+        }
+        public string month(int k)
+        {
+            string s = "";
+            if (k < 10)
+            {
+                s += '0';
+            }
+            s = s + k.ToString();
+            return s;
         }
     }
 }
