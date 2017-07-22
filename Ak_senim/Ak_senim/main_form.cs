@@ -13,10 +13,7 @@ namespace Ak_senim
     public partial class main_form : Form
     {
         DataTable types;
-        DataTable services;
         Database database;
-        Order orders = new Order();
-        BindingSource binding_source;
         string login;
 
         string open_fileloc;
@@ -30,9 +27,6 @@ namespace Ak_senim
             login = input_login;
             access = input_access;
             database = db;
-
-
-            service_datagrid.DataSource = orders.orders;
         }
 
         private void s_create_change_button_Click(object sender, EventArgs e)
@@ -149,29 +143,13 @@ namespace Ak_senim
 
         private void refresh_combobox()
         {
-            services = database.request("select * from services;");
-            types = database.request("select * from types;");
+
+            types = database.request("select * from types");
 
             service_type_combobox.Items.Clear();
-            s_service_type_combobox.Items.Clear();
-
             foreach (DataRow dr in types.Rows)
             {
                 service_type_combobox.Items.Add(dr["name"]);
-                s_service_type_combobox.Items.Add(dr["name"]);
-            }
-        }
-        private void refresh_service_combobox()
-        {
-            service_name_combobox.Items.Clear();
-
-            foreach(DataRow dr in services.Rows)
-            {
-                if(dr["type"].ToString() == service_type_combobox.Text)
-                {
-                    service_name_combobox.Items.Add(dr["name"]);
-                }
-                
             }
         }
 
@@ -180,18 +158,34 @@ namespace Ak_senim
             refresh_combobox();
         }
 
-        private void service_type_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void service_delete_button_Click(object sender, EventArgs e)
         {
-            refresh_service_combobox();
+
         }
 
-        private void service_add_button_Click(object sender, EventArgs e)
+        private void service_tab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void service_total_price_label_Click(object sender, EventArgs e)
         {
             orders.add_order(Convert.ToInt32(service_code_textbox.Text), service_name_combobox.Text, Convert.ToInt32(service_price_textbox.Text), Convert.ToInt32(service_discount_textbox.Text), service_doctorcode_textbox.Text, Convert.ToInt32(service_share_textbox.Text));
-     
+            MessageBox.Show("Услуга успешно добавлена");
             service_datagrid.Refresh();
-        }
 
+            refresh_sum();
+            
+        }
+        private void refresh_sum()
+        {
+            service_total_sum_label.Text = "Сумма: "+orders.sum();
+        }
         private void service_delete_button_Click(object sender, EventArgs e)
         {
             while (service_datagrid.SelectedRows.Count > 0)
@@ -199,13 +193,41 @@ namespace Ak_senim
                 orders.orders.Rows[service_datagrid.SelectedRows[0].Index].Delete();
             }
 
+            //service_datagrid.DataSource = orders;
             service_datagrid.Refresh();
+            refresh_sum();
+        }
+
+        private void service_price_textbox_TextChanged(object sender, EventArgs e)
+        {
+            refresh_price();
+        }
+        private void refresh_price()
+        {
+            int price = 0;
+            int discount = 0;
+            if (service_price_textbox.Text != "")
+            {
+                price = Convert.ToInt32(service_price_textbox.Text);
+            }
+            if (service_discount_textbox.Text != "")
+            {
+                discount = Convert.ToInt32(service_discount_textbox.Text);
+            }
+            service_total_price_label.Text = (price * (100 - discount) / 100).ToString();
+        }
+
+        private void service_discount_textbox_TextChanged(object sender, EventArgs e)
+        {
+            refresh_price();
         }
 
         private void service_save_button_Click(object sender, EventArgs e)
         {
-            orders.send_order(login, service_client_name_textbox.Text,database);
-            MessageBox.Show("Запись добавлена");
+
+
         }
+
+
     }
 }

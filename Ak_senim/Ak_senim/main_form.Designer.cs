@@ -253,7 +253,7 @@
             this.service_check_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.service_check_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.service_check_button.ForeColor = System.Drawing.Color.LightCyan;
-            this.service_check_button.Location = new System.Drawing.Point(1017, 28);
+            this.service_check_button.Location = new System.Drawing.Point(950, 28);
             this.service_check_button.Name = "service_check_button";
             this.service_check_button.Size = new System.Drawing.Size(177, 35);
             this.service_check_button.TabIndex = 7;
@@ -264,7 +264,7 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox2.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.service_discount_textbox);
@@ -309,6 +309,7 @@
             this.service_discount_textbox.Name = "service_discount_textbox";
             this.service_discount_textbox.Size = new System.Drawing.Size(113, 29);
             this.service_discount_textbox.TabIndex = 18;
+            this.service_discount_textbox.TextChanged += new System.EventHandler(this.service_discount_textbox_TextChanged);
             // 
             // service_share_textbox
             // 
@@ -344,6 +345,7 @@
             this.service_price_textbox.Name = "service_price_textbox";
             this.service_price_textbox.Size = new System.Drawing.Size(152, 29);
             this.service_price_textbox.TabIndex = 14;
+            this.service_price_textbox.TextChanged += new System.EventHandler(this.service_price_textbox_TextChanged);
             // 
             // label1
             // 
@@ -451,9 +453,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.service_client_name_textbox);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(9, 6);
             this.groupBox1.Name = "groupBox1";
