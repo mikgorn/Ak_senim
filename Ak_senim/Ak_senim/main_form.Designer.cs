@@ -624,6 +624,7 @@
             this.book_doctor_combobox.Name = "book_doctor_combobox";
             this.book_doctor_combobox.Size = new System.Drawing.Size(227, 28);
             this.book_doctor_combobox.TabIndex = 5;
+            this.book_doctor_combobox.SelectedIndexChanged += new System.EventHandler(this.book_doctor_combobox_SelectedIndexChanged);
             // 
             // book_add_button
             // 
@@ -656,6 +657,7 @@
             // book_calendar
             // 
             this.book_calendar.Location = new System.Drawing.Point(9, 12);
+            this.book_calendar.MaxSelectionCount = 1;
             this.book_calendar.Name = "book_calendar";
             this.book_calendar.TabIndex = 0;
             // 

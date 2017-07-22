@@ -12,9 +12,11 @@ namespace Ak_senim
 {
     public partial class main_form : Form
     {
+        string[] times = {"8:00", "9:00", "10:00","11:00", "12:00","13:00","14:00", "15:00","16:00","17:00","18:00","19:00","20:00","21:00" };
         DataTable types;
         DataTable services;
         Database database;
+        DataTable booking;
         Order orders = new Order();
         BindingSource binding_source;
         string login;
@@ -41,6 +43,10 @@ namespace Ak_senim
 
             refresh_combobox();
             service_datagrid.DataSource = orders.orders;
+
+            set_new_booking();
+
+            book_datagrid.DataSource = booking;
         }
 
         private void s_create_change_button_Click(object sender, EventArgs e)
@@ -294,6 +300,33 @@ namespace Ak_senim
                     service_type_combobox.Text = dr["type"].ToString();
                 }
             }
+        }
+        public void set_new_booking()
+        {
+            booking = new DataTable();
+            booking.Columns.Add("time");
+            booking.Columns.Add("name");
+            booking.Columns.Add("phone");
+            booking.Columns.Add("doctorcode");
+            booking.Columns.Add("memo");
+
+            //   date datetime, time text, doctor text, name text, phone text, doctorcode int, memo text
+        }
+        private void book_doctor_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh_book();
+        }
+        public void refresh_book()
+        {
+
+            booking.Clear();
+
+            foreach (string time in times)
+            {
+                DataRow dr = booking.Rows.Add();
+                dr["time"] = time;
+            }
+            book_datagrid.Refresh();
         }
     }
 }
