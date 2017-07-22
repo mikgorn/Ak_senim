@@ -31,18 +31,21 @@ namespace Ak_senim
             orders.Columns.Add("share");
             orders.Columns.Add("doctorcode");
         }
-
-        public int sum()
+        public void clear()
         {
-            int s = 0;
-            foreach(DataRow dr in orders.Rows)
-            {
-                s += Convert.ToInt32(dr["final_price"]);
-
-            }
-            return s;
+            orders.Clear();
         }
-        public void add_order( int service_code, string service_name, int price, int discount, string doctorcode ,int share)
+        public int count_sum()
+        {
+            int sum = 0;
+            foreach (DataRow dr in orders.Rows)
+            {
+                sum += Convert.ToInt32(dr["final"]);
+            }
+            return sum;
+        }
+
+        public void add_order(int service_code, string service_name, int price, int discount, string doctorcode, int share)
         {
             DataRow dr = orders.NewRow();
             dr["service_code"] = service_code;
@@ -55,8 +58,8 @@ namespace Ak_senim
 
             orders.Rows.Add(dr);
         }
-        
-        public void send_order(string login, string name,Database database)
+
+        public void send_order(string login, string name, Database database)
         {
             foreach (DataRow dr in orders.Rows)
             {

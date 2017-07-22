@@ -219,6 +219,7 @@
             this.service_refresh_button.TabIndex = 10;
             this.service_refresh_button.Text = "Следующий";
             this.service_refresh_button.UseVisualStyleBackColor = false;
+            this.service_refresh_button.Click += new System.EventHandler(this.service_refresh_button_Click);
             // 
             // service_white_checkbox
             // 
@@ -433,6 +434,7 @@
             this.service_name_combobox.Name = "service_name_combobox";
             this.service_name_combobox.Size = new System.Drawing.Size(546, 32);
             this.service_name_combobox.TabIndex = 3;
+            this.service_name_combobox.SelectedIndexChanged += new System.EventHandler(this.service_name_combobox_SelectedIndexChanged);
             // 
             // service_type_combobox
             // 
@@ -442,6 +444,7 @@
             this.service_type_combobox.Name = "service_type_combobox";
             this.service_type_combobox.Size = new System.Drawing.Size(349, 32);
             this.service_type_combobox.TabIndex = 2;
+            this.service_type_combobox.SelectedIndexChanged += new System.EventHandler(this.service_type_combobox_SelectedIndexChanged_1);
             // 
             // service_code_textbox
             // 
@@ -450,6 +453,7 @@
             this.service_code_textbox.Name = "service_code_textbox";
             this.service_code_textbox.Size = new System.Drawing.Size(117, 29);
             this.service_code_textbox.TabIndex = 1;
+            this.service_code_textbox.TextChanged += new System.EventHandler(this.service_code_textbox_TextChanged);
             // 
             // groupBox1
             // 
@@ -516,6 +520,7 @@
             // 
             // booking_tab
             // 
+            this.booking_tab.BackColor = System.Drawing.Color.PaleTurquoise;
             this.booking_tab.Controls.Add(this.label13);
             this.booking_tab.Controls.Add(this.book_memo_textbox);
             this.booking_tab.Controls.Add(this.label11);
@@ -536,7 +541,6 @@
             this.booking_tab.Size = new System.Drawing.Size(1249, 671);
             this.booking_tab.TabIndex = 3;
             this.booking_tab.Text = "Бронирование";
-            this.booking_tab.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -657,6 +661,7 @@
             // 
             // report_tab
             // 
+            this.report_tab.BackColor = System.Drawing.Color.PaleTurquoise;
             this.report_tab.Controls.Add(this.groupBox5);
             this.report_tab.Controls.Add(this.groupBox4);
             this.report_tab.Controls.Add(this.groupBox3);
@@ -667,7 +672,6 @@
             this.report_tab.Size = new System.Drawing.Size(1249, 671);
             this.report_tab.TabIndex = 1;
             this.report_tab.Text = "Отчеты";
-            this.report_tab.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -793,6 +797,7 @@
             // 
             // settings_tab
             // 
+            this.settings_tab.BackColor = System.Drawing.Color.PaleTurquoise;
             this.settings_tab.Controls.Add(this.groupBox12);
             this.settings_tab.Controls.Add(this.groupBox11);
             this.settings_tab.Controls.Add(this.groupBox10);
@@ -806,7 +811,6 @@
             this.settings_tab.Size = new System.Drawing.Size(1249, 671);
             this.settings_tab.TabIndex = 2;
             this.settings_tab.Text = "Настройки";
-            this.settings_tab.UseVisualStyleBackColor = true;
             // 
             // groupBox12
             // 
