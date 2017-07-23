@@ -371,11 +371,10 @@ namespace Ak_senim
             DataTable report = database.request(String.Format("select * from logs where date between '{0}-{1}-{2} 00:00:01' and '{3}-{4}-{5} 23:59:59';",
                 d1.Year, month(d1.Month), d1.Day,
                 d2.Year, month(d2.Month), d2.Day));
-            
 
-            foreach (DataRow dr in report.Rows)
-            {
-            }
+            
+            print_report_3(report,d1,d2);
+            
         }
         public string month(int k)
         {
@@ -386,6 +385,67 @@ namespace Ak_senim
             }
             s = s + k.ToString();
             return s;
+        }
+        public void print_report_3(DataTable dt, DateTime d1, DateTime d2)
+        {
+            Microsoft.Office.Interop.Word.Application win_word = new Microsoft.Office.Interop.Word.Application();
+            win_word.ShowAnimation = false;
+            win_word.Visible = false;
+            object missing = System.Reflection.Missing.Value;
+            Microsoft.Office.Interop.Word.Document report_file = win_word.Documents.Add(ref missing,ref missing,ref missing, ref missing);
+
+            Microsoft.Office.Interop.Word.Paragraph para1 = report_file.Content.Paragraphs.Add(ref missing);
+            object styleHeading1 = "Heading 1";
+            para1.Range.set_Style(ref styleHeading1);
+            para1.Range.Text = String.Format("Отчет с {0} по {1}",d1.ToShortDateString(), d2.ToShortDateString());
+            para1.Range.InsertParagraphAfter();
+
+            Microsoft.Office.Interop.Word.Table data_table = report_file.Tables.Add(para1.Range, dt.Rows.Count+1, 9, ref missing, ref missing);
+            data_table.Borders.OutsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
+            data_table.Borders.InsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
+            data_table.Cell(1, 1).Range.Text = "Дата";
+            data_table.Cell(1, 2).Range.Text = "ФИО клиента";
+            data_table.Cell(1, 3).Range.Text = "Код услуги";
+            data_table.Cell(1, 4).Range.Text = "Цена";
+            data_table.Cell(1, 5).Range.Text = "Скидка";
+            data_table.Cell(1, 6).Range.Text = "Итог";
+            data_table.Cell(1, 7).Range.Text = "Доктор";
+            data_table.Cell(1, 8).Range.Text = "Доля";
+            data_table.Cell(1, 9).Range.Text = "Админ";
+            //logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int, login text);");
+            //fill table
+            int index = 2;
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                data_table.Cell(index, 1).Range.Text = dr["date"].ToString();
+                data_table.Cell(index, 2).Range.Text = dr["name"].ToString();
+                data_table.Cell(index, 3).Range.Text = dr["service_code"].ToString();
+                data_table.Cell(index, 4).Range.Text = dr["price"].ToString();
+                data_table.Cell(index, 5).Range.Text = dr["discount"].ToString();
+                data_table.Cell(index, 6).Range.Text = dr["final"].ToString();
+                data_table.Cell(index, 7).Range.Text = dr["doctorcode"].ToString();
+                data_table.Cell(index, 8).Range.Text = dr["share"].ToString();
+                data_table.Cell(index, 9).Range.Text = dr["login"].ToString();
+                index++;
+            }
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "doc files (*.docx)|*.docx|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+            object file_path = "";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                file_path = saveFileDialog1.FileName;
+            }
+
+            report_file.SaveAs2(ref file_path);
+            report_file.Close(ref missing, ref missing, ref missing);
+            report_file = null;
+            win_word.Quit(ref missing, ref missing, ref missing);
+            win_word = null;
+            MessageBox.Show("Document created successfully !");
         }
     }
 }
