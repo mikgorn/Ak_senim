@@ -628,27 +628,32 @@
             // 
             // book_add_button
             // 
-            this.book_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.book_add_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.book_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.book_add_button.ForeColor = System.Drawing.Color.LightCyan;
             this.book_add_button.Location = new System.Drawing.Point(248, 552);
             this.book_add_button.Name = "book_add_button";
             this.book_add_button.Size = new System.Drawing.Size(185, 57);
             this.book_add_button.TabIndex = 4;
             this.book_add_button.Text = "Добавить";
-            this.book_add_button.UseVisualStyleBackColor = true;
+            this.book_add_button.UseVisualStyleBackColor = false;
             this.book_add_button.Click += new System.EventHandler(this.book_add_button_Click);
             // 
             // book_change_button
             // 
-            this.book_change_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.book_change_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.book_change_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.book_change_button.ForeColor = System.Drawing.Color.LightCyan;
             this.book_change_button.Location = new System.Drawing.Point(770, 544);
             this.book_change_button.Name = "book_change_button";
             this.book_change_button.Size = new System.Drawing.Size(185, 57);
             this.book_change_button.TabIndex = 3;
             this.book_change_button.Text = "Изменить";
-            this.book_change_button.UseVisualStyleBackColor = true;
+            this.book_change_button.UseVisualStyleBackColor = false;
             // 
             // book_datagrid
             // 
+            this.book_datagrid.BackgroundColor = System.Drawing.Color.LightCyan;
             this.book_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.book_datagrid.Location = new System.Drawing.Point(248, 12);
             this.book_datagrid.Name = "book_datagrid";
@@ -691,23 +696,26 @@
             // report_white_checkbox
             // 
             this.report_white_checkbox.AutoSize = true;
-            this.report_white_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_white_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_white_checkbox.ForeColor = System.Drawing.Color.DarkCyan;
             this.report_white_checkbox.Location = new System.Drawing.Point(33, 110);
             this.report_white_checkbox.Name = "report_white_checkbox";
-            this.report_white_checkbox.Size = new System.Drawing.Size(171, 28);
+            this.report_white_checkbox.Size = new System.Drawing.Size(212, 33);
             this.report_white_checkbox.TabIndex = 6;
             this.report_white_checkbox.Text = "Вся отчетность";
             this.report_white_checkbox.UseVisualStyleBackColor = true;
             // 
             // report_profit_button
             // 
-            this.report_profit_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_profit_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.report_profit_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_profit_button.ForeColor = System.Drawing.Color.LightCyan;
             this.report_profit_button.Location = new System.Drawing.Point(50, 183);
             this.report_profit_button.Name = "report_profit_button";
             this.report_profit_button.Size = new System.Drawing.Size(128, 56);
             this.report_profit_button.TabIndex = 5;
             this.report_profit_button.Text = "Отчет";
-            this.report_profit_button.UseVisualStyleBackColor = true;
+            this.report_profit_button.UseVisualStyleBackColor = false;
             this.report_profit_button.Click += new System.EventHandler(this.report_profit_button_Click);
             // 
             // groupBox4
@@ -724,13 +732,16 @@
             // 
             // report_group_button
             // 
-            this.report_group_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_group_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.report_group_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_group_button.ForeColor = System.Drawing.Color.LightCyan;
             this.report_group_button.Location = new System.Drawing.Point(50, 183);
             this.report_group_button.Name = "report_group_button";
             this.report_group_button.Size = new System.Drawing.Size(128, 56);
             this.report_group_button.TabIndex = 5;
             this.report_group_button.Text = "Отчет";
-            this.report_group_button.UseVisualStyleBackColor = true;
+            this.report_group_button.UseVisualStyleBackColor = false;
+            this.report_group_button.Click += new System.EventHandler(this.report_group_button_Click);
             // 
             // report_group_combobox
             // 
@@ -744,10 +755,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(46, 68);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label15.Location = new System.Drawing.Point(31, 68);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(142, 24);
+            this.label15.Size = new System.Drawing.Size(184, 29);
             this.label15.TabIndex = 3;
             this.label15.Text = "Группа врачей";
             // 
@@ -765,13 +777,16 @@
             // 
             // report_solo_button
             // 
-            this.report_solo_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_solo_button.BackColor = System.Drawing.Color.DarkCyan;
+            this.report_solo_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.report_solo_button.ForeColor = System.Drawing.Color.LightCyan;
             this.report_solo_button.Location = new System.Drawing.Point(50, 183);
             this.report_solo_button.Name = "report_solo_button";
             this.report_solo_button.Size = new System.Drawing.Size(128, 56);
             this.report_solo_button.TabIndex = 2;
             this.report_solo_button.Text = "Отчет";
-            this.report_solo_button.UseVisualStyleBackColor = true;
+            this.report_solo_button.UseVisualStyleBackColor = false;
+            this.report_solo_button.Click += new System.EventHandler(this.report_solo_button_Click);
             // 
             // report_doctor_combobox
             // 
@@ -781,21 +796,23 @@
             this.report_doctor_combobox.Name = "report_doctor_combobox";
             this.report_doctor_combobox.Size = new System.Drawing.Size(164, 32);
             this.report_doctor_combobox.TabIndex = 1;
+            this.report_doctor_combobox.SelectedIndexChanged += new System.EventHandler(this.report_doctor_combobox_SelectedIndexChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.DarkCyan;
             this.label14.Location = new System.Drawing.Point(89, 68);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 24);
+            this.label14.Size = new System.Drawing.Size(70, 29);
             this.label14.TabIndex = 0;
             this.label14.Text = "Врач";
             // 
             // report_calendar
             // 
             this.report_calendar.CalendarDimensions = new System.Drawing.Size(3, 2);
-            this.report_calendar.Location = new System.Drawing.Point(9, 9);
+            this.report_calendar.Location = new System.Drawing.Point(43, 12);
             this.report_calendar.MaxSelectionCount = 365;
             this.report_calendar.Name = "report_calendar";
             this.report_calendar.TabIndex = 0;
@@ -832,13 +849,15 @@
             // 
             // s_merge_change_button
             // 
+            this.s_merge_change_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_merge_change_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_merge_change_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_merge_change_button.Location = new System.Drawing.Point(173, 46);
             this.s_merge_change_button.Name = "s_merge_change_button";
             this.s_merge_change_button.Size = new System.Drawing.Size(104, 29);
             this.s_merge_change_button.TabIndex = 29;
             this.s_merge_change_button.Text = "Изменить";
-            this.s_merge_change_button.UseVisualStyleBackColor = true;
+            this.s_merge_change_button.UseVisualStyleBackColor = false;
             this.s_merge_change_button.Click += new System.EventHandler(this.s_merge_change_button_Click);
             // 
             // s_merge_path_textbox
@@ -851,13 +870,15 @@
             // 
             // s_merge_button
             // 
+            this.s_merge_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_merge_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_merge_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_merge_button.Location = new System.Drawing.Point(304, 35);
             this.s_merge_button.Name = "s_merge_button";
             this.s_merge_button.Size = new System.Drawing.Size(100, 40);
             this.s_merge_button.TabIndex = 28;
             this.s_merge_button.Text = "Слиять";
-            this.s_merge_button.UseVisualStyleBackColor = true;
+            this.s_merge_button.UseVisualStyleBackColor = false;
             this.s_merge_button.Click += new System.EventHandler(this.s_merge_button_Click);
             // 
             // label34
@@ -884,24 +905,28 @@
             // 
             // s_open_button
             // 
+            this.s_open_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_open_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_open_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_open_button.Location = new System.Drawing.Point(10, 81);
             this.s_open_button.Name = "s_open_button";
             this.s_open_button.Size = new System.Drawing.Size(100, 40);
             this.s_open_button.TabIndex = 30;
             this.s_open_button.Text = "Открыть";
-            this.s_open_button.UseVisualStyleBackColor = true;
+            this.s_open_button.UseVisualStyleBackColor = false;
             this.s_open_button.Click += new System.EventHandler(this.s_open_button_Click);
             // 
             // s_open_change_button
             // 
+            this.s_open_change_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_open_change_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_open_change_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_open_change_button.Location = new System.Drawing.Point(173, 46);
             this.s_open_change_button.Name = "s_open_change_button";
             this.s_open_change_button.Size = new System.Drawing.Size(104, 28);
             this.s_open_change_button.TabIndex = 29;
             this.s_open_change_button.Text = "Изменить";
-            this.s_open_change_button.UseVisualStyleBackColor = true;
+            this.s_open_change_button.UseVisualStyleBackColor = false;
             this.s_open_change_button.Click += new System.EventHandler(this.s_open_change_button_Click);
             // 
             // s_open_path_textbox
@@ -936,13 +961,15 @@
             // 
             // s_create_button
             // 
+            this.s_create_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_create_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_create_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_create_button.Location = new System.Drawing.Point(10, 96);
             this.s_create_button.Name = "s_create_button";
             this.s_create_button.Size = new System.Drawing.Size(100, 40);
             this.s_create_button.TabIndex = 30;
             this.s_create_button.Text = "Создать";
-            this.s_create_button.UseVisualStyleBackColor = true;
+            this.s_create_button.UseVisualStyleBackColor = false;
             this.s_create_button.Click += new System.EventHandler(this.s_create_button_Click);
             // 
             // s_create_path_textbox
@@ -955,13 +982,15 @@
             // 
             // s_create_change_button
             // 
+            this.s_create_change_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_create_change_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_create_change_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_create_change_button.Location = new System.Drawing.Point(173, 46);
             this.s_create_change_button.Name = "s_create_change_button";
             this.s_create_change_button.Size = new System.Drawing.Size(104, 29);
             this.s_create_change_button.TabIndex = 28;
             this.s_create_change_button.Text = "Изменить";
-            this.s_create_change_button.UseVisualStyleBackColor = true;
+            this.s_create_change_button.UseVisualStyleBackColor = false;
             this.s_create_change_button.Click += new System.EventHandler(this.s_create_change_button_Click);
             // 
             // label32
@@ -989,13 +1018,15 @@
             // 
             // s_doctor_add_button
             // 
+            this.s_doctor_add_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_doctor_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_doctor_add_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_doctor_add_button.Location = new System.Drawing.Point(10, 188);
             this.s_doctor_add_button.Name = "s_doctor_add_button";
             this.s_doctor_add_button.Size = new System.Drawing.Size(143, 53);
             this.s_doctor_add_button.TabIndex = 31;
             this.s_doctor_add_button.Text = "Добавить";
-            this.s_doctor_add_button.UseVisualStyleBackColor = true;
+            this.s_doctor_add_button.UseVisualStyleBackColor = false;
             this.s_doctor_add_button.Click += new System.EventHandler(this.s_doctor_add_button_Click);
             // 
             // s_doctor_code_textbox
@@ -1054,13 +1085,15 @@
             // 
             // s_user_add_button
             // 
+            this.s_user_add_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_user_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_user_add_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_user_add_button.Location = new System.Drawing.Point(10, 314);
             this.s_user_add_button.Name = "s_user_add_button";
             this.s_user_add_button.Size = new System.Drawing.Size(143, 53);
             this.s_user_add_button.TabIndex = 29;
             this.s_user_add_button.Text = "Добавить";
-            this.s_user_add_button.UseVisualStyleBackColor = true;
+            this.s_user_add_button.UseVisualStyleBackColor = false;
             this.s_user_add_button.Click += new System.EventHandler(this.s_user_add_button_Click);
             // 
             // s_user_memo_textbox
@@ -1172,13 +1205,15 @@
             // 
             // s_type_add_button
             // 
+            this.s_type_add_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_type_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_type_add_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_type_add_button.Location = new System.Drawing.Point(10, 110);
             this.s_type_add_button.Name = "s_type_add_button";
             this.s_type_add_button.Size = new System.Drawing.Size(143, 53);
             this.s_type_add_button.TabIndex = 28;
             this.s_type_add_button.Text = "Добавить";
-            this.s_type_add_button.UseVisualStyleBackColor = true;
+            this.s_type_add_button.UseVisualStyleBackColor = false;
             this.s_type_add_button.Click += new System.EventHandler(this.s_type_add_button_Click);
             // 
             // label29
@@ -1214,13 +1249,15 @@
             // 
             // s_service_add_button
             // 
+            this.s_service_add_button.BackColor = System.Drawing.Color.DarkCyan;
             this.s_service_add_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.s_service_add_button.ForeColor = System.Drawing.Color.LightCyan;
             this.s_service_add_button.Location = new System.Drawing.Point(10, 461);
             this.s_service_add_button.Name = "s_service_add_button";
             this.s_service_add_button.Size = new System.Drawing.Size(143, 53);
             this.s_service_add_button.TabIndex = 29;
             this.s_service_add_button.Text = "Добавить";
-            this.s_service_add_button.UseVisualStyleBackColor = true;
+            this.s_service_add_button.UseVisualStyleBackColor = false;
             this.s_service_add_button.Click += new System.EventHandler(this.s_service_add_button_Click);
             // 
             // s_service_type_combobox
