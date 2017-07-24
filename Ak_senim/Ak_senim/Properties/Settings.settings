@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="database" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ak_senim.db</Value>
+      <Value Profile="(Default)">new</Value>
     </Setting>
   </Settings>
 </SettingsFile>

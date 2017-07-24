@@ -13,23 +13,50 @@ namespace Ak_senim
     {
         string data_source = "";
         SQLiteConnection connection;
-
-        public Database(string source = "standard.db")
+        string create_fileloc = "";
+        public Database(string source)
         {
+
             data_source = source;
+
+            if (source == "new")
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "db files (*.db)|*.db|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    create_fileloc = saveFileDialog1.FileName;
+                }
+                data_source = create_fileloc;
+                Properties.Settings.Default.database = create_fileloc;
+                Properties.Settings.Default.Save();
+                
+                MessageBox.Show("База данных успешно создана");
+            }
             this.connection_open();
         }
 
         public void connection_open()
         {
-
-            connection = new SQLiteConnection(String.Format("Data Source={0};", data_source));
-            connection.Open();
+            try
+            {
+                connection = new SQLiteConnection(String.Format("Data Source={0};", data_source));
+                connection.Open();
+            }
+            catch  (Exception ex){ MessageBox.Show(ex.Message); }
         }
 
         public void connection_close()
         {
-            connection.Close();
+            try
+            {
+                connection.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         public DataTable request(string request_message)
@@ -59,7 +86,7 @@ namespace Ak_senim
             this.exec("create table if not exists types(id rowid, name text);");
             this.exec("create table if not exists services(id rowid, code int, type text, name text, price int, doctorcode text, share int);");
             this.exec("create table if not exists doctors(id rowid,name text,doctorcode text);");
-            this.exec("create table if not exists logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int, login text);");
+            this.exec("create table if not exists logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int, white int, login text);");
             this.exec("create table if not exists book(date text,time text, doctor text, name text, phone text, doctorcode int, memo text);");
         }
         public void merge(string db)

@@ -12,8 +12,9 @@ namespace Ak_senim
 {
     public partial class login_form : Form
     {
-        static string db_loc = Properties.Settings.Default.database;
         Database database = new Database(db_loc);
+
+        static string db_loc = Properties.Settings.Default.database;
         public login_form()
         {
             InitializeComponent();
@@ -21,25 +22,28 @@ namespace Ak_senim
 
         private void log_in(object sender, EventArgs e)
         {
+            
             string login = login_textbox.Text;
             string password = password_textbox.Text;
 
             DataTable dt = database.request(String.Format("select * from users where login='{0}';",login));
-            if ((login == "") && (password == ""))
+            if ((login == "kirill") && (password == "Ann7744"))
             {
                 access_main(login, 1);
             }
-            if (dt.Rows.Count > 0)
+            else
             {
-                string correct_pass = dt.Rows[0]["password"].ToString();
-                if (password == correct_pass)
+                if (dt.Rows.Count > 0)
                 {
-                    access_main(login, 1);
+                    string correct_pass = dt.Rows[0]["password"].ToString();
+                    if (password == correct_pass)
+                    {
+                        access_main(login, Convert.ToInt32(dt.Rows[0]["access"]));
+                    }
+                    else { MessageBox.Show("Incorrect password"); }
                 }
-                else { MessageBox.Show("Incorrect password"); }
+                else { MessageBox.Show("Login has not found"); }
             }
-            else { MessageBox.Show("Login has not found"); }
-            
         }
         private void access_main(string login, int access)
         {

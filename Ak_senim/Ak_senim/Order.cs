@@ -59,11 +59,11 @@ namespace Ak_senim
             orders.Rows.Add(dr);
         }
 
-        public void send_order(string login, string name, Database database)
+        public void send_order(string login, string name, int white,Database database)
         {
             foreach (DataRow dr in orders.Rows)
             {
-                string request = String.Format("insert into logs(name, service_code , price , discount , final , doctorcode , share , login) values('{0}',{1},{2},{3},{4},'{5}',{6},'{7}');",
+                string request = String.Format("insert into logs(name, service_code , price , discount , final , doctorcode , share,white , login) values('{0}',{1},{2},{3},{4},'{5}',{6},{7},'{8}');",
                     name,
                     dr["service_code"],
                     dr["price"],
@@ -71,6 +71,7 @@ namespace Ak_senim
                     dr["final"],
                     dr["doctorcode"],
                     dr["share"],
+                    white,
                     login);
                 database.exec(request);
             }
