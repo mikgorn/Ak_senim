@@ -5,5 +5,8 @@
     <Setting Name="database" Type="System.String" Scope="User">
       <Value Profile="(Default)">new</Value>
     </Setting>
+    <Setting Name="k_1_template" Type="System.String" Scope="User">
+      <Value Profile="(Default)">new</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

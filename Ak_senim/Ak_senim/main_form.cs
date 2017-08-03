@@ -12,7 +12,9 @@ namespace Ak_senim
 {
     public partial class main_form : Form
     {
-        string[] times = {"8:00", "8:30", "9:00", "9:30", "10:00","10:30","11:00", "11:30","12:00","12:30","13:00","13:30","14:00","14:30", "15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00" };
+        Microsoft.Office.Interop.Word.Application win_word;
+
+        string[] times = { "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00" };
         DataTable types;
         DataTable services;
         Database database;
@@ -21,6 +23,8 @@ namespace Ak_senim
         Order orders = new Order();
         BindingSource binding_source;
         string login;
+
+        int sum = 0;
 
         string open_fileloc;
         string create_fileloc;
@@ -46,6 +50,13 @@ namespace Ak_senim
         {
 
             InitializeComponent();
+
+
+            win_word = new Microsoft.Office.Interop.Word.Application();
+            win_word.ShowAnimation = false;
+            win_word.Visible = false;
+
+
             login = input_login;
             access = input_access;
 
@@ -62,6 +73,14 @@ namespace Ak_senim
                 }
             }
 
+            if (access > 10)
+            {
+                tabControl1.TabPages.Clear();
+                tabControl1.TabPages.Add(report_tab);
+                report_solo_button.Enabled = false;
+                report_profit_button.Enabled = false;
+                report_group_combobox.Enabled = false;
+            }
 
 
 
@@ -100,7 +119,7 @@ namespace Ak_senim
 
             Properties.Settings.Default.database = create_fileloc;
             Properties.Settings.Default.Save();
-
+            refresh_combobox();
             MessageBox.Show("База данных успешно создана");
         }
 
@@ -112,6 +131,7 @@ namespace Ak_senim
             Properties.Settings.Default.database = open_fileloc;
             Properties.Settings.Default.Save();
             MessageBox.Show("База данных открыта");
+            refresh_combobox();
         }
 
         private void s_open_change_button_Click(object sender, EventArgs e)
@@ -147,6 +167,7 @@ namespace Ak_senim
             database.merge(merge_fileloc);
 
             MessageBox.Show("База данных успешно добавлена");
+            refresh_combobox();
         }
 
         private void s_service_add_button_Click(object sender, EventArgs e)
@@ -203,13 +224,15 @@ namespace Ak_senim
             {
                 service_type_combobox.Items.Add(dr["name"]);
                 s_service_type_combobox.Items.Add(dr["name"]);
-                book_doctor_combobox.Items.Add(dr["name"]);
             }
             doctors = database.request("select * from doctors;");
+            book_doctor_combobox.Items.Clear();
             report_doctor_combobox.Items.Clear();
             foreach (DataRow dr in doctors.Rows)
             {
                 report_doctor_combobox.Items.Add(dr["name"].ToString());
+
+                book_doctor_combobox.Items.Add(dr["name"]);
             }
         }
         private void refresh_service_combobox()
@@ -228,7 +251,73 @@ namespace Ak_senim
 
         private void service_check_button_Click(object sender, EventArgs e)
         {
-            refresh_combobox();
+            print_check();
+        }
+        public void print_check()
+        {
+            string name = service_client_name_textbox.Text;
+            string reason = orders.reason_line();
+            string date = DateTime.Now.ToShortDateString();
+            DateTime d = DateTime.Now;
+            DataTable report = database.request(String.Format("select * from logs where white = 1 and date between '{0}-{1}-{2} 00:00:01' and '{3}-{4}-{5} 23:59:59';",
+                d.Year, month(d.Month), d.Day,
+                d.Year, month(d.Month), d.Day));
+            report = report.DefaultView.ToTable(true, "date");
+            string num = (report.Rows.Count + 1).ToString();
+            try
+            {
+                string source = Properties.Settings.Default.k_1_template;
+                if (source == "new")
+                {
+                    OpenFileDialog saveFileDialog1 = new OpenFileDialog();
+
+                    saveFileDialog1.Filter = "doc files (*.doc)|*.doc|All files (*.*)|*.*";
+                    saveFileDialog1.FilterIndex = 1;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        source = saveFileDialog1.FileName;
+                    }
+                    Properties.Settings.Default.k_1_template = source;
+                    Properties.Settings.Default.Save();
+
+                    MessageBox.Show("Шаблон кассового ордера задан");
+                }
+
+                object missing = System.Reflection.Missing.Value;
+                Microsoft.Office.Interop.Word.Document check_file = win_word.Documents.Add(source, false, ref missing, ref missing);
+
+                check_file.Bookmarks["date"].Select();
+                win_word.Selection.TypeText(date);
+
+                check_file.Bookmarks["client1"].Select();
+                win_word.Selection.TypeText(name);
+                check_file.Bookmarks["client2"].Select();
+                win_word.Selection.TypeText(name);
+
+                check_file.Bookmarks["reason1"].Select();
+                win_word.Selection.TypeText(reason);
+                check_file.Bookmarks["reason2"].Select();
+                win_word.Selection.TypeText(reason);
+
+                check_file.Bookmarks["sum1"].Select();
+                win_word.Selection.TypeText(sum.ToString());
+                check_file.Bookmarks["sum2"].Select();
+                win_word.Selection.TypeText(sum.ToString());
+
+                check_file.Bookmarks["num1"].Select();
+                win_word.Selection.TypeText(num);
+                check_file.Bookmarks["num2"].Select();
+                win_word.Selection.TypeText(num);
+
+                check_file.PrintOut();
+
+                check_file.Close(Microsoft.Office.Interop.Word.WdSaveOptions.wdDoNotSaveChanges, ref missing, ref missing);
+                check_file = null;
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void service_type_combobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -237,14 +326,22 @@ namespace Ak_senim
         }
         private void refresh_sum()
         {
-            int sum = orders.count_sum();
-            service_total_sum_label.Text = "Сумма: "+ sum;
+            sum = orders.count_sum();
+            service_total_sum_label.Text = "Сумма: " + sum;
         }
         private void service_add_button_Click(object sender, EventArgs e)
         {
-            orders.add_order(convert(service_code_textbox.Text), service_name_combobox.Text, convert(service_price_textbox.Text), convert(service_discount_textbox.Text), service_doctorcode_textbox.Text, Convert.ToInt32(service_share_textbox.Text));
-            refresh_sum();
-            service_datagrid.Refresh();
+            bool flag = false;
+            if (service_client_name_textbox.Text == "") flag = true;
+            if (service_name_combobox.Text == "" && service_code_textbox.Text == "") flag = true;
+            if (service_price_textbox.Text == "") flag = true;
+            if (flag) MessageBox.Show("Введите обязательные поля");
+            else
+            {
+                orders.add_order(convert(service_code_textbox.Text), service_name_combobox.Text, convert(service_price_textbox.Text), convert(service_discount_textbox.Text), service_doctorcode_textbox.Text, Convert.ToInt32(service_share_textbox.Text));
+                refresh_sum();
+                service_datagrid.Refresh();
+            }
         }
 
         private void service_delete_button_Click(object sender, EventArgs e)
@@ -263,8 +360,9 @@ namespace Ak_senim
             if (service_white_checkbox.Checked)
             {
                 white = 1;
+                print_check();
             }
-            orders.send_order(login, service_client_name_textbox.Text, white,database);
+            orders.send_order(login, service_client_name_textbox.Text, white, database);
             MessageBox.Show("Запись добавлена");
         }
         private void service_price_textbox_TextChanged(object sender, EventArgs e)
@@ -368,10 +466,10 @@ namespace Ak_senim
                 DataRow dr = booking.Rows.Add();
                 dr["time"] = time;
             }
-            if (book_doctor_combobox.Text!="")
+            if (book_doctor_combobox.Text != "")
             {
-                DataTable request_bookings = database.request(String.Format("select * from book where date = '{0}' and doctor = '{1}';",book_calendar.SelectionRange.Start.ToShortDateString(),book_doctor_combobox.Text));
-                foreach(DataRow dr in request_bookings.Rows)
+                DataTable request_bookings = database.request(String.Format("select * from book where date = '{0}' and doctor = '{1}';", book_calendar.SelectionRange.Start.ToShortDateString(), book_doctor_combobox.Text));
+                foreach (DataRow dr in request_bookings.Rows)
                 {
                     fill_book(dr);
                 }
@@ -380,7 +478,7 @@ namespace Ak_senim
         }
         public void fill_book(DataRow dr)
         {
-            DataRow[] dr1 = booking.Select(String.Format("time = '{0}'",dr["time"]));
+            DataRow[] dr1 = booking.Select(String.Format("time = '{0}'", dr["time"]));
             dr1[0]["name"] = dr["name"];
             dr1[0]["phone"] = dr["phone"];
             dr1[0]["doctorcode"] = dr["doctorcode"];
@@ -395,9 +493,18 @@ namespace Ak_senim
             string doctor = book_doctor_combobox.Text;
             string phone = book_phone_textbox.Text;
             string memo = book_memo_textbox.Text;
-            database.exec(String.Format("insert into book(date,time,doctor,name,phone,memo) values('{0}','{1}','{2}','{3}','{4}','{5}');",date,time,doctor,name,phone,memo));
-            MessageBox.Show("Бронирование добавлено");
-            refresh_book();
+
+            bool flag = false;
+            if (name == "") flag = true;
+            if (phone == "" ) flag = true;
+            if (time == "") flag = true;
+            if (flag) MessageBox.Show("Введите обязательные поля");
+            else
+            {
+                database.exec(String.Format("insert into book(date,time,doctor,name,phone,memo) values('{0}','{1}','{2}','{3}','{4}','{5}');", date, time, doctor, name, phone, memo));
+                MessageBox.Show("Бронирование добавлено");
+                refresh_book();
+            }
         }
 
         private void book_calendar_DateChanged(object sender, DateRangeEventArgs e)
@@ -413,9 +520,9 @@ namespace Ak_senim
                 d1.Year, month(d1.Month), d1.Day,
                 d2.Year, month(d2.Month), d2.Day));
 
-            
-            print_report_3(report,d1,d2);
-            
+
+            print_report_3(report, d1, d2);
+
         }
         public string month(int k)
         {
@@ -429,15 +536,11 @@ namespace Ak_senim
         }
         public void print_report_3(DataTable dt, DateTime d1, DateTime d2)
         {
-            Microsoft.Office.Interop.Word.Application win_word = new Microsoft.Office.Interop.Word.Application();
-            win_word.ShowAnimation = false;
-            win_word.Visible = false;
             object missing = System.Reflection.Missing.Value;
-            Microsoft.Office.Interop.Word.Document report_file = win_word.Documents.Add(ref missing,ref missing,ref missing, ref missing);
+            Microsoft.Office.Interop.Word.Document report_file = win_word.Documents.Add(ref missing, ref missing, ref missing, ref missing);
 
             Microsoft.Office.Interop.Word.Paragraph para1 = report_file.Content.Paragraphs.Add(ref missing);
-            object styleHeading1 = "Heading 1";
-            para1.Range.set_Style(ref styleHeading1);
+            
 
             int sumd = 0;
             int sum = 0;
@@ -449,110 +552,9 @@ namespace Ak_senim
             }
             diff = sum - sumd;
 
-            para1.Range.Text = String.Format("Отчет с {0} по {1}\n Всего: {2} \n К выплате: {3}\n Прибыль: {4}",d1.ToShortDateString(), d2.ToShortDateString(),sum,sumd,diff);
+            para1.Range.Text = String.Format("Отчет с {0} по {1}\n Всего: {2} \n К выплате: {3}\n Прибыль: {4}", d1.ToShortDateString(), d2.ToShortDateString(), sum, sumd, diff);
             para1.Range.InsertParagraphAfter();
 
-            Microsoft.Office.Interop.Word.Table data_table = report_file.Tables.Add(para1.Range, dt.Rows.Count+1, 9, ref missing, ref missing);
-            data_table.Borders.OutsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
-            data_table.Borders.InsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
-            data_table.Cell(1, 1).Range.Text = "Дата";
-            data_table.Cell(1, 2).Range.Text = "ФИО клиента";
-            data_table.Cell(1, 3).Range.Text = "Код услуги";
-            data_table.Cell(1, 4).Range.Text = "Цена";
-            data_table.Cell(1, 5).Range.Text = "Скидка";
-            data_table.Cell(1, 6).Range.Text = "Итог";
-            data_table.Cell(1, 7).Range.Text = "Доктор";
-            data_table.Cell(1, 8).Range.Text = "Доля";
-            data_table.Cell(1, 9).Range.Text = "Админ";
-            //logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int, login text);");
-            //fill table
-            int index = 2;
-
-            foreach(DataRow dr in dt.Rows)
-            {
-                data_table.Cell(index, 1).Range.Text = dr["date"].ToString();
-                data_table.Cell(index, 2).Range.Text = dr["name"].ToString();
-                data_table.Cell(index, 3).Range.Text = dr["service_code"].ToString();
-                data_table.Cell(index, 4).Range.Text = dr["price"].ToString();
-                data_table.Cell(index, 5).Range.Text = dr["discount"].ToString();
-                data_table.Cell(index, 6).Range.Text = dr["final"].ToString();
-                data_table.Cell(index, 7).Range.Text = dr["doctorcode"].ToString();
-                data_table.Cell(index, 8).Range.Text = dr["share"].ToString();
-                data_table.Cell(index, 9).Range.Text = dr["login"].ToString();
-                index++;
-            }
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-            saveFileDialog1.Filter = "doc files (*.docx)|*.docx|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.RestoreDirectory = true;
-            object file_path = "";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                file_path = saveFileDialog1.FileName;
-            }
-
-            report_file.SaveAs2(ref file_path);
-            report_file.Close(ref missing, ref missing, ref missing);
-            report_file = null;
-            win_word.Quit(ref missing, ref missing, ref missing);
-            win_word = null;
-            MessageBox.Show("Document created successfully !");
-        }
-
-        private void report_doctor_combobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void report_solo_button_Click(object sender, EventArgs e)
-        {
-            try { 
-            DateTime d1 = report_calendar.SelectionStart;
-            DateTime d2 = report_calendar.SelectionEnd;
-            string doctor = "";
-            foreach (DataRow dr in doctors.Rows)
-            {
-                if(dr["name"].ToString() == report_doctor_combobox.Text)
-                {
-                    doctor = dr["doctorcode"].ToString();
-                }
-            }
-            string name = report_doctor_combobox.Text;
-            DataTable report = database.request(String.Format("select * from logs where doctorcode = '{0}' and date between '{1}-{2}-{3} 00:00:01' and '{4}-{5}-{6} 23:59:59';",
-                doctor,
-                d1.Year, month(d1.Month), d1.Day,
-                d2.Year, month(d2.Month), d2.Day));
-
-
-            print_report_1(report, d1, d2, name);
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-
-        }
-        public void print_report_1(DataTable dt, DateTime d1, DateTime d2, string name)
-        {
-            try { 
-            Microsoft.Office.Interop.Word.Application win_word = new Microsoft.Office.Interop.Word.Application();
-            win_word.ShowAnimation = false;
-            win_word.Visible = false;
-            object missing = System.Reflection.Missing.Value;
-            Microsoft.Office.Interop.Word.Document report_file = win_word.Documents.Add(ref missing, ref missing, ref missing, ref missing);
-
-            Microsoft.Office.Interop.Word.Paragraph para1 = report_file.Content.Paragraphs.Add(ref missing);
-            object styleHeading1 = "Heading 1";
-
-            para1.Range.set_Style(ref styleHeading1);
-
-            int sum = 0;
-            foreach (DataRow dr in dt.Rows)
-            {
-                sum += convert(dr["final"].ToString()) * convert(dr["share"].ToString())/100;
-            }
-            para1.Range.Text = String.Format("Врач {0} \n Отчет с {1} по {2} \n Всего к оплате: {3}", name, d1.ToShortDateString(), d2.ToShortDateString(),sum);
-            para1.Range.InsertParagraphAfter();
-
-            
             Microsoft.Office.Interop.Word.Table data_table = report_file.Tables.Add(para1.Range, dt.Rows.Count + 1, 9, ref missing, ref missing);
             data_table.Borders.OutsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
             data_table.Borders.InsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
@@ -596,42 +598,137 @@ namespace Ak_senim
             report_file.SaveAs2(ref file_path);
             report_file.Close(ref missing, ref missing, ref missing);
             report_file = null;
-            win_word.Quit(ref missing, ref missing, ref missing);
-            win_word = null;
             MessageBox.Show("Document created successfully !");
+        }
+
+        private void report_doctor_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void report_solo_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime d1 = report_calendar.SelectionStart;
+                DateTime d2 = report_calendar.SelectionEnd;
+                string doctor = "";
+                foreach (DataRow dr in doctors.Rows)
+                {
+                    if (dr["name"].ToString() == report_doctor_combobox.Text)
+                    {
+                        doctor = dr["doctorcode"].ToString();
+                    }
+                }
+                string name = report_doctor_combobox.Text;
+                DataTable report = database.request(String.Format("select * from logs where doctorcode = '{0}' and date between '{1}-{2}-{3} 00:00:01' and '{4}-{5}-{6} 23:59:59';",
+                    doctor,
+                    d1.Year, month(d1.Month), d1.Day,
+                    d2.Year, month(d2.Month), d2.Day));
+
+
+                print_report_1(report, d1, d2, name);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+        }
+        public void print_report_1(DataTable dt, DateTime d1, DateTime d2, string name)
+        {
+            try
+            {
+                object missing = System.Reflection.Missing.Value;
+                Microsoft.Office.Interop.Word.Document report_file = win_word.Documents.Add(ref missing, ref missing, ref missing, ref missing);
+
+                Microsoft.Office.Interop.Word.Paragraph para1 = report_file.Content.Paragraphs.Add(ref missing);
+
+                int sum = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    sum += convert(dr["final"].ToString()) * convert(dr["share"].ToString()) / 100;
+                }
+                para1.Range.Text = String.Format("Врач {0} \n Отчет с {1} по {2} \n Всего к оплате: {3}", name, d1.ToShortDateString(), d2.ToShortDateString(), sum);
+                para1.Range.InsertParagraphAfter();
+
+
+                Microsoft.Office.Interop.Word.Table data_table = report_file.Tables.Add(para1.Range, dt.Rows.Count + 1, 9, ref missing, ref missing);
+                data_table.Borders.OutsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
+                data_table.Borders.InsideLineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleSingle;
+                data_table.Cell(1, 1).Range.Text = "Дата";
+                data_table.Cell(1, 2).Range.Text = "ФИО клиента";
+                data_table.Cell(1, 3).Range.Text = "Код услуги";
+                data_table.Cell(1, 4).Range.Text = "Цена";
+                data_table.Cell(1, 5).Range.Text = "Скидка";
+                data_table.Cell(1, 6).Range.Text = "Итог";
+                data_table.Cell(1, 7).Range.Text = "Доктор";
+                data_table.Cell(1, 8).Range.Text = "Доля";
+                data_table.Cell(1, 9).Range.Text = "Админ";
+                //logs(date datetime default CURRENT_TIMESTAMP, name text, service_code int, price int, discount int, final int, doctorcode text, share int, login text);");
+                //fill table
+                int index = 2;
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    data_table.Cell(index, 1).Range.Text = dr["date"].ToString();
+                    data_table.Cell(index, 2).Range.Text = dr["name"].ToString();
+                    data_table.Cell(index, 3).Range.Text = dr["service_code"].ToString();
+                    data_table.Cell(index, 4).Range.Text = dr["price"].ToString();
+                    data_table.Cell(index, 5).Range.Text = dr["discount"].ToString();
+                    data_table.Cell(index, 6).Range.Text = dr["final"].ToString();
+                    data_table.Cell(index, 7).Range.Text = dr["doctorcode"].ToString();
+                    data_table.Cell(index, 8).Range.Text = dr["share"].ToString();
+                    data_table.Cell(index, 9).Range.Text = dr["login"].ToString();
+                    index++;
+                }
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "doc files (*.docx)|*.docx|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+                saveFileDialog1.RestoreDirectory = true;
+                object file_path = "";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    file_path = saveFileDialog1.FileName;
+                }
+
+                report_file.SaveAs2(ref file_path);
+                report_file.Close(ref missing, ref missing, ref missing);
+                report_file = null;
+                MessageBox.Show("Document created successfully !");
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void report_group_button_Click(object sender, EventArgs e)
         {
-            try { 
+            try
+            {
                 DateTime d1 = report_calendar.SelectionStart;
                 DateTime d2 = report_calendar.SelectionEnd;
-            string doctor = report_group_combobox.Text;
+                string doctor = report_group_combobox.Text;
+                if (access>10)
+                {
+                    doctor = (access % 10).ToString();
+                }
                 DataTable report = database.request(String.Format("select * from logs where doctorcode like '{0}%' and date between '{1}-{2}-{3} 00:00:01' and '{4}-{5}-{6} 23:59:59';",
                     doctor,
                     d1.Year, month(d1.Month), d1.Day,
                     d2.Year, month(d2.Month), d2.Day));
-
-
+                DataView dv = report.DefaultView;
+                dv.Sort = "doctorcode asc";
+                report = dv.ToTable();
                 print_report_2(report, d1, d2);
 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-            public void print_report_2(DataTable dt, DateTime d1, DateTime d2)
+        public void print_report_2(DataTable dt, DateTime d1, DateTime d2)
+        {
+            try
             {
-            try { 
-                Microsoft.Office.Interop.Word.Application win_word = new Microsoft.Office.Interop.Word.Application();
-                win_word.ShowAnimation = false;
-                win_word.Visible = false;
                 object missing = System.Reflection.Missing.Value;
                 Microsoft.Office.Interop.Word.Document report_file = win_word.Documents.Add(ref missing, ref missing, ref missing, ref missing);
 
                 Microsoft.Office.Interop.Word.Paragraph para1 = report_file.Content.Paragraphs.Add(ref missing);
-                object styleHeading1 = "Heading 1";
-                para1.Range.set_Style(ref styleHeading1);
                 para1.Range.Text = String.Format("Отчет с {0} по {1}", d1.ToShortDateString(), d2.ToShortDateString());
                 para1.Range.InsertParagraphAfter();
 
@@ -678,12 +775,10 @@ namespace Ak_senim
                 report_file.SaveAs2(ref file_path);
                 report_file.Close(ref missing, ref missing, ref missing);
                 report_file = null;
-                win_word.Quit(ref missing, ref missing, ref missing);
-                win_word = null;
                 MessageBox.Show("Document created successfully !");
 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-        }
+    }
 }

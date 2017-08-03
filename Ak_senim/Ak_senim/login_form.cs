@@ -27,7 +27,7 @@ namespace Ak_senim
             string password = password_textbox.Text;
 
             DataTable dt = database.request(String.Format("select * from users where login='{0}';",login));
-            if ((login == "kirill") && (password == "Ann7744"))
+            if ((login == "AkSenim") && (password == "AkSenimAlmaty"))
             {
                 access_main(login, 1);
             }

@@ -76,9 +76,12 @@ namespace Ak_senim
 
         public void exec(string request_message)
         {
+            try { 
             SQLiteCommand cmd = new SQLiteCommand(request_message, connection);
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         public void fill_empty()
         {

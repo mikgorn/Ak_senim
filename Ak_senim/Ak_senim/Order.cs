@@ -44,7 +44,19 @@ namespace Ak_senim
             }
             return sum;
         }
-
+        public string reason_line()
+        {
+            string s = "";
+            if (orders.Rows.Count > 0)
+            {
+                s = orders.Rows[0]["service_name"].ToString();
+            }
+            if (orders.Rows.Count > 1)
+            {
+                s += " +" + (orders.Rows.Count - 1) + " услуг(и)";
+            }
+            return s;
+        }
         public void add_order(int service_code, string service_name, int price, int discount, string doctorcode, int share)
         {
             DataRow dr = orders.NewRow();

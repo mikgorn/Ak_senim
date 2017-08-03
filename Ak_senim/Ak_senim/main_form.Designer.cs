@@ -254,7 +254,7 @@
             this.service_check_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.service_check_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.service_check_button.ForeColor = System.Drawing.Color.LightCyan;
-            this.service_check_button.Location = new System.Drawing.Point(950, 28);
+            this.service_check_button.Location = new System.Drawing.Point(1053, 28);
             this.service_check_button.Name = "service_check_button";
             this.service_check_button.Size = new System.Drawing.Size(177, 35);
             this.service_check_button.TabIndex = 7;
@@ -650,6 +650,7 @@
             this.book_change_button.TabIndex = 3;
             this.book_change_button.Text = "Изменить";
             this.book_change_button.UseVisualStyleBackColor = false;
+            this.book_change_button.Visible = false;
             // 
             // book_datagrid
             // 
@@ -1118,6 +1119,15 @@
             // 
             this.s_user_access_combobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.s_user_access_combobox.FormattingEnabled = true;
+            this.s_user_access_combobox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"});
             this.s_user_access_combobox.Location = new System.Drawing.Point(10, 190);
             this.s_user_access_combobox.Name = "s_user_access_combobox";
             this.s_user_access_combobox.Size = new System.Drawing.Size(191, 32);

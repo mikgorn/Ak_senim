@@ -34,5 +34,17 @@ namespace Ak_senim.Properties {
                 this["database"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("new")]
+        public string k_1_template {
+            get {
+                return ((string)(this["k_1_template"]));
+            }
+            set {
+                this["k_1_template"] = value;
+            }
+        }
     }
 }
